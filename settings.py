@@ -7,9 +7,8 @@ hog_file = "/home/chris/Downloads/hog_file.pkl"
 sc_file = "/home/chris/Downloads/sc_file.pkl"
 
 
-train_file = "train.txt"
-test_file = "test.txt"
-val_file = "val.txt"
+train_file = "data/train.txt"
+test_file = "data/test.txt"
 
 sample_points = 500
 
