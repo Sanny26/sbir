@@ -29,3 +29,12 @@ hog_params = {
                 "orientations": 8,
                 "cells_per_block": (4, 4)
              }
+
+
+sc_params = {
+                "window_sizes": [5, 10, 15, 20, 25, 30],
+                "nbins_r": 5,
+                "nbins_theta": 12,
+                "r_inner": 0.1250,
+                "r_outer": 2.0
+            }
