@@ -8,13 +8,6 @@ from scipy.spatial.distance import cdist
 from skimage.io import imread
 from settings import sample_points
 
-"""Don't see why such complicated function is used.
-   You are not even using the T matrix, then why compute it?
-   Also, there are no modifications made to `points` array anywhere, it is returned as it is then why such big code?
-   Don't see any random sampling also?
-   See the code I wrote in main for points generation.
- """
-
 # def sample_pts_image(image, threshold=100, npoints=500, radius=2, aperture=5):
 #     py, px = np.gradient(image)
 #     points = [index for index, val in np.ndenumerate(img)
