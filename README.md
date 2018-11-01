@@ -1,5 +1,5 @@
 # Sketch Based Image Retrieval
--------
+
 ## Project Objective:
 The aim of this project is to build a system that is able to retrieve relevant and appropriate images when a sketch image is given as a query to the system. The retrieved images may be sketches or colored/digital images. The system will be trained to identify the best possible match for a given sketch image to a subset of relevant images.
 
