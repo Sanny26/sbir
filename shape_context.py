@@ -67,9 +67,7 @@ def shape_context(points, nbins_r, nbins_theta, r_inner, r_outer, max_window_siz
     for i in range(t_points):
         sn = np.zeros((nbins_r, nbins_theta))
         x, y = points[i]
-        # Skip point if window not possible
-        if x - (max_window_size - 1) < 0 or x + max_window_size > img.shape[0] or y - (max_window_size - 1) < 0 or y + max_window_size > img.shape[1]:
-            continue
+        
         if window is not None:
             local_x = np.where((points[:, 0] >= (x-window)) & (points[:, 0] <= (x+window)))
             local_y = np.where((points[:, 0] >= y-window) & (points[:, 0] <= y+window))

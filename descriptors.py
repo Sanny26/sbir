@@ -66,7 +66,7 @@ def create_and_save_sc_words(data_file, sc_params, sc_file):
             samples = indices
 
         points = np.array([[edge_pixels[0][i], edge_pixels[1][i]] for i in samples])
-        descriptors = gen_sc_descriptors(img, points, **sc_params)
+        descriptors = gen_sc_descriptors(points, **sc_params)
         sc_words[filenames[i]] = descriptors
     pdb.set_trace()
     pickle.dump(sc_words, open(sc_file, "wb"))
