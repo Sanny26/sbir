@@ -9,6 +9,7 @@ from settings import train_file, sample_points
 from settings import hog_params, hog_file
 from settings import sc_params, sc_file
 from shape_context import shape_context
+from spark import get_spark_descriptors
 
 
 def gen_hog_descriptors(img, points, window_sizes, orientations, cells_per_block):
@@ -85,6 +86,21 @@ def gen_sc_descriptors(points, window_sizes, nbins_r, nbins_theta, r_inner, r_ou
         descriptors = np.hstack((descriptors, desc))
 
     return descriptors
+
+
+def create_and_save_spark_words(data_file, spark_file):
+    """Create Spark descriptors and save them to pickle file."""
+    print("Reading images.")
+    X, y, filenames = read_data(data_file, test=True)
+
+    spark_words = {}
+
+    for i, img in enumerate(X):
+        print("Processing image ", i)
+        sc_words[filenames[i]] = get_spark_descriptors(img)
+    pdb.set_trace()
+    pickle.dump(sc_words, open(spark_file, "wb"))
+
 
 
 if __name__ == "__main__":

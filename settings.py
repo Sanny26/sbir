@@ -1,11 +1,12 @@
+root_folder = "/home/santhoshini/sbir/"
 
-data_folder = "/home/chris/Downloads/benchmark/images/"
-test_folder = "/home/chris/Downloads/benchmark/sketches/"
-edge_folder = "/home/chris/Downloads/benchmark/edge/"
+data_folder = "{}{}".format(root_folder, "benchmark/images/")
+test_folder = "{}{}".format(root_folder, "benchmark/sketches/")
+edge_folder = "{}{}".format("benchmark/edge/")
 
-hog_file = "/home/chris/Downloads/hog_file.pkl"
-sc_file = "/home/chris/Downloads/sc_file.pkl"
-
+hog_file = "{}{}".format("hog_file.pkl")
+sc_file = "{}{}".format("sc_file.pkl")
+spark_file = "{}{}".format("spark.pkl")
 
 train_file = "data/train.txt"
 test_file = "data/test.txt"
@@ -14,7 +15,7 @@ sample_points = 500
 
 codebook_size = 750
 
-bof_features = "/home/chris/Downloads/bof_features.pkl"
+bof_features = "{}{}".format("bof_features.pkl")
 bof_model = "bagoffeature_" + str(codebook_size) + ".pkl"
 
 edge_params = {
