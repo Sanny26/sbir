@@ -8,6 +8,7 @@ import pickle
 from settings import train_file, sample_points
 from settings import hog_params, hog_file
 from settings import sc_params, sc_file
+from settings import spark_file
 from shape_context import shape_context
 from spark import get_spark_descriptors
 
@@ -104,6 +105,7 @@ def create_and_save_spark_words(data_file, spark_file):
 
 
 if __name__ == "__main__":
-    create_and_save_hog_words(train_file, hog_params, hog_file)
-    create_and_save_sc_words(train_file, sc_params, sc_file)
+    #create_and_save_hog_words(train_file, hog_params, hog_file)
+    #create_and_save_sc_words(train_file, sc_params, sc_file)
+    create_and_save_spark_words(train_file, spark_file)
     pdb.set_trace()

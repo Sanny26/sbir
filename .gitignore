@@ -1,5 +1,6 @@
 sc_descriptor.py
 benchmark/*
+data/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

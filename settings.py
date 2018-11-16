@@ -2,7 +2,7 @@ root_folder = "/home/santhoshini/sbir/"
 
 data_folder = "{}{}".format(root_folder, "benchmark/images/")
 test_folder = "{}{}".format(root_folder, "benchmark/sketches/")
-edge_folder = "{}{}".format(root_folder, "benchmark/edge/")
+edge_folder = "{}{}".format(root_folder, "benchmark/edges/")
 
 hog_file = "{}{}".format(root_folder, "hog_file.pkl")
 sc_file = "{}{}".format(root_folder, "sc_file.pkl")
