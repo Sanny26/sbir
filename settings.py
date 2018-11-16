@@ -2,11 +2,11 @@ root_folder = "/home/santhoshini/sbir/"
 
 data_folder = "{}{}".format(root_folder, "benchmark/images/")
 test_folder = "{}{}".format(root_folder, "benchmark/sketches/")
-edge_folder = "{}{}".format("benchmark/edge/")
+edge_folder = "{}{}".format(root_folder, "benchmark/edge/")
 
-hog_file = "{}{}".format("hog_file.pkl")
-sc_file = "{}{}".format("sc_file.pkl")
-spark_file = "{}{}".format("spark.pkl")
+hog_file = "{}{}".format(root_folder, "hog_file.pkl")
+sc_file = "{}{}".format(root_folder, "sc_file.pkl")
+spark_file = "{}{}".format(root_folder, "spark.pkl")
 
 train_file = "data/train.txt"
 test_file = "data/test.txt"
