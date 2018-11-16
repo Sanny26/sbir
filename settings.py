@@ -15,7 +15,7 @@ sample_points = 500
 
 codebook_size = 750
 
-bof_features = "{}{}".format("bof_features.pkl")
+bof_features = "{}{}".format(root_folder, "bof_features.pkl")
 bof_model = "bagoffeature_" + str(codebook_size) + ".pkl"
 
 edge_params = {
