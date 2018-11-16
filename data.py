@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from settings import data_folder, test_folder
+from settings import data_folder, test_folder, edge_folder
 from settings import train_file, test_file
 from skimage.io import imread
 
@@ -55,5 +55,5 @@ def read_data(filename, test=False):
 
 
 if __name__ == "__main__":
-    make_train_val_file(data_folder, train_file)
+    make_train_val_file(edge_folder, train_file)
     make_test_file(test_folder, test_file)

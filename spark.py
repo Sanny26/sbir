@@ -57,28 +57,31 @@ def get_spark_descriptors(img, npoints=500, nbins_r=5, nbins_theta=12):
 			direction_bins = np.arange(theta_array.min(), theta_array.max(), 0.05)
 			direction_array = []
 			for each in theta_array[0]:
-				try:
-					dbin = (each>=direction_bins).nonzero()[0][-1]
-					direction_array.append(direction_bins[dbin])
-				except:
-					pdb.set_trace()
+				dbin = (each>=direction_bins).nonzero()[0][-1]
+				direction_array.append(direction_bins[dbin])
 
-		## get first feature line points in every direction.
-		direction_array = np.array(direction_array)
-		unique_directions = np.unique(direction_array)
-		rpoints = []
-		for direction in unique_directions:
-			pos = (direction_array == direction).nonzero()[0]
-			dpoints = sketch_points[pos]
-			darray = cdist(np.array([patch_centre]), dpoints)
-			rpoints.append(sketch_points[pos[darray.argmin()]])
+			## get first feature line points in every direction.
+			direction_array = np.array(direction_array)
+			unique_directions = np.unique(direction_array)
+			rpoints = []
+			for direction in unique_directions:
+				pos = (direction_array == direction).nonzero()[0]
+				dpoints = sketch_points[pos]
+				darray = cdist(np.array([patch_centre]), dpoints)
+				rpoints.append(sketch_points[pos[darray.argmin()]])
+				bin_r = (bins_r <= darray[0, darray.argmin()]).nonzero()[0][-1] 	
+				bin_theta = (bins_theta <= direction).nonzero()[0][-1]
+				pt_hist[bin_r, bin_theta] += 1 	
+				
+			rpoints = np.array(rpoints)
+			#plot_feature_points(patch, rpoints, patch_centre)
+			descriptor.append(pt_hist)
+
+		else:
 			bin_r = (bins_r <= darray[0, darray.argmin()]).nonzero()[0][-1] 	
 			bin_theta = (bins_theta <= direction).nonzero()[0][-1]
-			pt_hist[bin_r, bin_theta] += 1 	
-			
-		rpoints = np.array(rpoints)
-		plot_feature_points(patch, rpoints, patch_centre)
-		descriptor.append(pt_hist)
+			pt_hist[bin_r, bin_theta] += 1
+			descriptor.append(pt_hist)
 
 	return descriptor
 		

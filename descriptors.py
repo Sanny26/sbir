@@ -70,7 +70,7 @@ def create_and_save_sc_words(data_file, sc_params, sc_file):
         points = np.array([[edge_pixels[0][i], edge_pixels[1][i]] for i in samples])
         descriptors = gen_sc_descriptors(points, **sc_params)
         sc_words[filenames[i]] = descriptors
-    pdb.set_trace()
+    #pdb.set_trace()
     pickle.dump(sc_words, open(sc_file, "wb"))
 
 
@@ -97,10 +97,10 @@ def create_and_save_spark_words(data_file, spark_file):
     spark_words = {}
 
     for i, img in enumerate(X):
-        print("Processing image ", i)
-        sc_words[filenames[i]] = get_spark_descriptors(img)
+        print("Processing image ", filenames[i])
+        spark_words[filenames[i]] = get_spark_descriptors(img)
     pdb.set_trace()
-    pickle.dump(sc_words, open(spark_file, "wb"))
+    pickle.dump(spark_words, open(spark_file, "wb"))
 
 
 

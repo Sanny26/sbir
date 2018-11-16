@@ -11,12 +11,15 @@ from skimage.color import rgb2gray
 from skimage.io import imread, imsave
 
 
-def convert_to_sketch(img, sigma, low_threshold, high_threshold):
+def convert_to_sketch(img, use_params=True):
     """Convert a non-sketch image to sketch space using edge detection."""
     if len(img.shape) == 3:
         img = rgb2gray(img)
 
-    edges = canny(img, sigma=sigma, low_threshold=low_threshold, high_threshold=high_threshold)
+    if use_params:
+        edges = canny(img, **edge_params)
+    else:
+        edges = canny(img)
     return edges * 255
 
 
@@ -36,7 +39,8 @@ def convert_images(data_folder, edge_folder):
             image_path = os.path.join(path, f)
             print("Processing image: ", image_path)
             img = imread(image_path, as_gray="True")
-            edge_img = convert_to_sketch(img, **edge_params)
+            #edge_img = convert_to_sketch(img, **edge_params)
+            edge_img = convert_to_sketch(img, use_params=False)
             imsave(os.path.join(edge_path, f.strip(".jpg") + ".png"), edge_img)
 
     return True
