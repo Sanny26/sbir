@@ -1,3 +1,6 @@
+# NOTE: Don't keep a root folder, data may not be in the root folder.
+#       Ideally variables in settings.py should be constants that are user defined
+#       Not a good idea to generate them assuming some file structure.
 
 data_folder = "/home/chris/Downloads/benchmark/images/"
 test_folder = "/home/chris/Downloads/benchmark/sketches/"

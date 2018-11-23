@@ -107,7 +107,7 @@ def create_and_save_spark_words(data_file, params, filename):
         rpoints = np.array(rpoints).transpose()
 
         spark_words[filenames[i]] = gen_spark_descriptors(img, rpoints, **params)
-    pdb.set_trace()
+    # pdb.set_trace()
     pickle.dump(spark_words, open(filename, "wb"))
 
 
