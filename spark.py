@@ -61,17 +61,17 @@ def gen_spark_descriptors(img, points, nbins_r, nbins_theta, window_size):
             unique_directions = np.unique(direction_array)
 
             # NOTE: Why are you making it as an empty list? The for loop is running on this.
-            points = []
+            # t_points = []
             for direction in unique_directions:
                 pos = (direction_array == direction).nonzero()[0]
                 dpoints = sketch_points[pos]
                 darray = cdist(np.array([patch_centre]), dpoints)
-                points.append(sketch_points[pos[darray.argmin()]])
+                # t_points.append(sketch_points[pos[darray.argmin()]])
                 bin_r = (bins_r <= darray[0, darray.argmin()]).nonzero()[0][-1]
                 bin_theta = (bins_theta <= direction).nonzero()[0][-1]
                 pt_hist[bin_r, bin_theta] += 1
 
-            points = np.array(points)
+            # t_points = np.array(points)
             # plot_feature_points(patch, points, patch_centre)
             descriptor.append(pt_hist.flatten())
 
@@ -92,5 +92,5 @@ if __name__ == "__main__":
     rpoints = [points[0][rand_ind], points[1][rand_ind]]
     rpoints = np.array(rpoints).transpose()
 
-    desc = get_spark_descriptors(img, rpoints, **spark_params)
+    desc = gen_spark_descriptors(img, rpoints, **spark_params)
     pdb.set_trace()
