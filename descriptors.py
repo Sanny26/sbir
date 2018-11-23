@@ -1,16 +1,19 @@
 """Generate all descriptors."""
 
-from data import read_data
-from hog import get_hog_descriptors
 import numpy as np
 import pdb
 import pickle
+
+from data import read_data
+
 from settings import train_file, sample_points
 from settings import hog_params, hog_file
 from settings import sc_params, sc_file
 from settings import spark_params, spark_file
+
+from hog import get_hog_descriptors
 from shape_context import shape_context
-from spark import get_spark_descriptors
+from spark import gen_spark_descriptors
 
 
 def gen_hog_descriptors(img, points, window_sizes, orientations, cells_per_block):
@@ -103,13 +106,13 @@ def create_and_save_spark_words(data_file, params, filename):
         rpoints = [points[0][rand_ind], points[1][rand_ind]]
         rpoints = np.array(rpoints).transpose()
 
-        spark_words[filenames[i]] = get_spark_descriptors(img, rpoints, **params)
+        spark_words[filenames[i]] = gen_spark_descriptors(img, rpoints, **params)
     pdb.set_trace()
     pickle.dump(spark_words, open(filename, "wb"))
 
 
 if __name__ == "__main__":
-    create_and_save_hog_words(train_file, hog_params, hog_file)
-    create_and_save_sc_words(train_file, sc_params, sc_file)
+    # create_and_save_hog_words(train_file, hog_params, hog_file)
+    # create_and_save_sc_words(train_file, sc_params, sc_file)
     create_and_save_spark_words(train_file, spark_params, spark_file)
     pdb.set_trace()

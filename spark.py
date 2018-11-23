@@ -22,7 +22,7 @@ def plot_feature_points(patch, points, patch_centre):
     plt.show()
 
 
-def get_spark_descriptors(img, points, nbins_r, nbins_theta, window_size):
+def gen_spark_descriptors(img, points, nbins_r, nbins_theta, window_size):
     if np.count_nonzero(img == 255) == 0:
         return 0
 
