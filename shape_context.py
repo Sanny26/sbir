@@ -8,34 +8,6 @@ from scipy.spatial.distance import cdist
 from skimage.io import imread
 from settings import sample_points
 
-# def sample_pts_image(image, threshold=100, npoints=500, radius=2, aperture=5):
-#     py, px = np.gradient(image)
-#     points = [index for index, val in np.ndenumerate(img)
-#               if val == 255 and index[0] < py.shape[0] and index[1] < py.shape[1]]
-#
-#     h, w = image.shape
-#     while len(points) > npoints:
-#         newpoints = points
-#         xr = range(0, w, radius)
-#         yr = range(0, h, radius)
-#         for p in points:
-#             if p[0] not in yr and p[1] not in xr:
-#                 newpoints.remove(p)
-#                 if len(points) <= npoints:
-#                     T = np.zeros((npoints, 1))
-#                     for i, (y, x) in enumerate(points):
-#                         radians = math.atan2(py[y, x], px[y, x])
-#                         T[i] = radians + 2 * math.pi * (radians < 0)
-#                     pdb.set_trace()
-#                     return points, np.asmatrix(T)
-#         radius += 1
-#     T = np.zeros((npoints, 1))
-#     for i, (y, x) in enumerate(points):
-#         radians = math.atan2(py[y, x], px[y, x])
-#         T[i] = radians + 2 * math.pi * (radians < 0)
-#     return points, np.asmatrix(T)
-#
-
 
 def shape_context(points, nbins_r, nbins_theta, r_inner, r_outer, max_window_size, window=None):
     """Computes the Shape Context Feature Descriptor for the given input points."""
@@ -67,7 +39,7 @@ def shape_context(points, nbins_r, nbins_theta, r_inner, r_outer, max_window_siz
     for i in range(t_points):
         sn = np.zeros((nbins_r, nbins_theta))
         x, y = points[i]
-        
+
         if window is not None:
             local_x = np.where((points[:, 0] >= (x-window)) & (points[:, 0] <= (x+window)))
             local_y = np.where((points[:, 0] >= y-window) & (points[:, 0] <= y+window))

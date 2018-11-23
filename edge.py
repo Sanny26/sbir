@@ -1,7 +1,7 @@
 """Edge detection using Canny edge detector for non-sketch images."""
 
 import os
-import pdb
+# import pdb
 
 from settings import data_folder, edge_folder
 from settings import edge_params
@@ -40,7 +40,7 @@ def convert_images(data_folder, edge_folder):
             print("Processing image: ", image_path)
             img = imread(image_path, as_gray="True")
             edge_img = convert_to_sketch(img, use_params=True)
-            #edge_img = convert_to_sketch(img, use_params=False)
+            # edge_img = convert_to_sketch(img, use_params=False)
             imsave(os.path.join(edge_path, f.strip(".jpg") + ".png"), edge_img)
 
     return True

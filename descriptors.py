@@ -8,7 +8,7 @@ import pickle
 from settings import train_file, sample_points
 from settings import hog_params, hog_file
 from settings import sc_params, sc_file
-from settings import spark_file
+from settings import spark_params, spark_file
 from shape_context import shape_context
 from spark import get_spark_descriptors
 
@@ -26,7 +26,22 @@ def gen_hog_descriptors(img, points, window_sizes, orientations, cells_per_block
     return descriptors
 
 
-def create_and_save_hog_words(data_file, hog_params, hog_file):
+def gen_sc_descriptors(points, window_sizes, nbins_r, nbins_theta, r_inner, r_outer):
+    """Generate Hog descriptors using different window sizes."""
+    max_window_size = max(window_sizes)
+
+    descriptors = shape_context(points, window=window_sizes[0], max_window_size=max_window_size, nbins_r=nbins_r,
+                                nbins_theta=nbins_theta, r_inner=r_inner, r_outer=r_outer)
+
+    for window in window_sizes[1::]:
+        desc = shape_context(points, window=window, max_window_size=max_window_size, nbins_r=nbins_r,
+                             nbins_theta=nbins_theta, r_inner=r_inner, r_outer=r_outer)
+        descriptors = np.hstack((descriptors, desc))
+
+    return descriptors
+
+
+def create_and_save_hog_words(data_file, params, filename):
     """Create hog descriptors and save them to a pickle file."""
     print("Reading images.")
     X, y, filenames = read_data(data_file, test=True)
@@ -44,13 +59,13 @@ def create_and_save_hog_words(data_file, hog_params, hog_file):
             samples = indices
 
         points = np.array([[edge_pixels[0][i], edge_pixels[1][i]] for i in samples])
-        descriptors = gen_hog_descriptors(img, points, **hog_params)
+        descriptors = gen_hog_descriptors(img, points, **params)
         hog_words[filenames[i]] = descriptors
     pdb.set_trace()
-    pickle.dump(hog_words, open(hog_file, "wb"))
+    pickle.dump(hog_words, open(filename, "wb"))
 
 
-def create_and_save_sc_words(data_file, sc_params, sc_file):
+def create_and_save_sc_words(data_file, params, filename):
     """Create hog descriptors and save them to a pickle file."""
     print("Reading images.")
     X, y, filenames = read_data(data_file, test=True)
@@ -68,28 +83,13 @@ def create_and_save_sc_words(data_file, sc_params, sc_file):
             samples = indices
 
         points = np.array([[edge_pixels[0][i], edge_pixels[1][i]] for i in samples])
-        descriptors = gen_sc_descriptors(points, **sc_params)
+        descriptors = gen_sc_descriptors(points, **params)
         sc_words[filenames[i]] = descriptors
-    #pdb.set_trace()
-    pickle.dump(sc_words, open(sc_file, "wb"))
+    # pdb.set_trace()
+    pickle.dump(sc_words, open(filename, "wb"))
 
 
-def gen_sc_descriptors(points, window_sizes, nbins_r, nbins_theta, r_inner, r_outer):
-    """Generate Hog descriptors using different window sizes."""
-    max_window_size = max(window_sizes)
-
-    descriptors = shape_context(points, window=window_sizes[0], max_window_size=max_window_size, nbins_r=nbins_r,
-                                nbins_theta=nbins_theta, r_inner=r_inner, r_outer=r_outer)
-
-    for window in window_sizes[1::]:
-        desc = shape_context(points, window=window, max_window_size=max_window_size, nbins_r=nbins_r,
-                             nbins_theta=nbins_theta, r_inner=r_inner, r_outer=r_outer)
-        descriptors = np.hstack((descriptors, desc))
-
-    return descriptors
-
-
-def create_and_save_spark_words(data_file, spark_file):
+def create_and_save_spark_words(data_file, params, filename):
     """Create Spark descriptors and save them to pickle file."""
     print("Reading images.")
     X, y, filenames = read_data(data_file, test=True)
@@ -100,12 +100,11 @@ def create_and_save_spark_words(data_file, spark_file):
         print("Processing image ", filenames[i])
         spark_words[filenames[i]] = get_spark_descriptors(img)
     pdb.set_trace()
-    pickle.dump(spark_words, open(spark_file, "wb"))
-
+    pickle.dump(spark_words, open(filename, "wb"))
 
 
 if __name__ == "__main__":
-    #create_and_save_hog_words(train_file, hog_params, hog_file)
-    #create_and_save_sc_words(train_file, sc_params, sc_file)
-    create_and_save_spark_words(train_file, spark_file)
+    create_and_save_hog_words(train_file, hog_params, hog_file)
+    create_and_save_sc_words(train_file, sc_params, sc_file)
+    create_and_save_spark_words(train_file, spark_params, spark_file)
     pdb.set_trace()

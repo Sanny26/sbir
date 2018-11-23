@@ -38,3 +38,8 @@ sc_params = {
                 "r_inner": 0.1250,
                 "r_outer": 2.0
             }
+
+spark_params = {
+                    "nbins_r": 5,
+                    "nbins_theta": 12
+               }

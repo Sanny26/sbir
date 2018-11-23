@@ -1,33 +1,33 @@
 import os
 import numpy as np
-from settings import data_folder, test_folder, edge_folder
+from settings import test_folder, edge_folder
 from settings import train_file, test_file
 from skimage.io import imread
 
 
-def make_train_val_file(data_folder, train_file):
+def make_train_val_file(folder, train_file):
     """Make train and validation file."""
-    folders = os.listdir(data_folder)
+    folders = os.listdir(folder)
     t_file = open(train_file, "w")
 
     for label in folders:
-        path = os.path.join(data_folder, label)
+        path = os.path.join(folder, label)
         files = os.listdir(path)
 
         for f in files:
-            t_file.write("{},{}\n".format(os.path.join(data_folder, label, f), int(label)))
+            t_file.write("{},{}\n".format(os.path.join(folder, label, f), int(label)))
 
     t_file.close()
 
 
-def make_test_file(data_folder, output_file):
+def make_test_file(folder, output_file):
     """Make test file."""
-    files = os.listdir(data_folder)
+    files = os.listdir(folder)
     t_file = open(output_file, "w")
 
     for f in files:
         label = f.strip(".png")
-        t_file.write("{},{}\n".format(os.path.join(data_folder, f), int(label)))
+        t_file.write("{},{}\n".format(os.path.join(folder, f), int(label)))
 
     t_file.close()
 
