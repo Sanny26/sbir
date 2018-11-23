@@ -39,8 +39,8 @@ def convert_images(data_folder, edge_folder):
             image_path = os.path.join(path, f)
             print("Processing image: ", image_path)
             img = imread(image_path, as_gray="True")
-            #edge_img = convert_to_sketch(img, **edge_params)
-            edge_img = convert_to_sketch(img, use_params=False)
+            edge_img = convert_to_sketch(img, use_params=True)
+            #edge_img = convert_to_sketch(img, use_params=False)
             imsave(os.path.join(edge_path, f.strip(".jpg") + ".png"), edge_img)
 
     return True

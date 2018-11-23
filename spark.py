@@ -21,6 +21,8 @@ def plot_feature_points(patch, rpoints, patch_centre):
 
 
 def get_spark_descriptors(img, npoints=500, nbins_r=5, nbins_theta=12):
+	if np.count_nonzero(img==255) == 0:
+		return 0
 	points = (255-img).nonzero()
 	rand_ind = np.random.randint(0, len(points[0]), size=(npoints))
 	rpoints = [points[0][rand_ind], points[1][rand_ind]]
