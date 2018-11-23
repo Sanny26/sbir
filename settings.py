@@ -1,12 +1,11 @@
-root_folder = "/home/santhoshini/sbir/"
 
-data_folder = "{}{}".format(root_folder, "benchmark/images/")
-test_folder = "{}{}".format(root_folder, "benchmark/sketches/")
-edge_folder = "{}{}".format(root_folder, "benchmark/edges/")
+data_folder = "/home/chris/Downloads/benchmark/images/"
+test_folder = "/home/chris/Downloads/benchmark/sketches/"
+edge_folder = "/home/chris/Downloads/benchmark/edges/"
 
-hog_file = "{}{}".format(root_folder, "hog_file.pkl")
-sc_file = "{}{}".format(root_folder, "sc_file.pkl")
-spark_file = "{}{}".format(root_folder, "spark.pkl")
+hog_file = "/home/chris/Downloads/hog_file.pkl"
+sc_file = "/home/chris/Downloads/sc_file.pkl"
+spark_file = "/home/chris/Downloads/spark.pkl"
 
 train_file = "data/train.txt"
 test_file = "data/test.txt"
@@ -15,7 +14,7 @@ sample_points = 500
 
 codebook_size = 750
 
-bof_features = "{}{}".format(root_folder, "bof_features.pkl")
+bof_features = "/home/chris/Downloads/bof_features.pkl"
 bof_model = "bagoffeature_" + str(codebook_size) + ".pkl"
 
 edge_params = {
@@ -41,5 +40,6 @@ sc_params = {
 
 spark_params = {
                     "nbins_r": 5,
-                    "nbins_theta": 12
+                    "nbins_theta": 12,
+                    "window_size": 200
                }

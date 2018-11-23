@@ -98,7 +98,12 @@ def create_and_save_spark_words(data_file, params, filename):
 
     for i, img in enumerate(X):
         print("Processing image ", filenames[i])
-        spark_words[filenames[i]] = get_spark_descriptors(img)
+        points = (255-img).nonzero()
+        rand_ind = np.random.randint(0, len(points[0]), size=(sample_points))
+        rpoints = [points[0][rand_ind], points[1][rand_ind]]
+        rpoints = np.array(rpoints).transpose()
+
+        spark_words[filenames[i]] = get_spark_descriptors(img, rpoints, **params)
     pdb.set_trace()
     pickle.dump(spark_words, open(filename, "wb"))
 
