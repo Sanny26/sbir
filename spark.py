@@ -27,7 +27,7 @@ def gen_spark_descriptors(img, points, nbins_r, nbins_theta, window_size):
         return 0
 
     bins_r = np.linspace(0, window_size*np.sqrt(2)/2, nbins_r)
-    bins_theta = np.linspace(-2*np.pi, 2*np.pi, nbins_theta)
+    bins_theta = np.linspace(-np.pi, np.pi, nbins_theta)
     descriptor = []
 
     for i, point in enumerate(points):
