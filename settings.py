@@ -1,22 +1,19 @@
-# NOTE: Don't keep a root folder, data may not be in the root folder.
-#       Ideally variables in settings.py should be constants that are user defined
-#       Not a good idea to generate them assuming some file structure.
 
-data_folder = "/home/chris/Downloads/benchmark/images/"
-test_folder = "/home/chris/Downloads/benchmark/sketches/"
-edge_folder = "/home/chris/Downloads/benchmark/edges/"
+#data_folder = "/home/chris/Downloads/benchmark/images/"
+#test_folder = "/home/chris/Downloads/benchmark/sketches/"
+#edge_folder = "/home/chris/Downloads/benchmark/edges/"
 
-hog_file = "/home/chris/Downloads/hog_file.pkl"
-sc_file = "/home/chris/Downloads/sc_file.pkl"
-spark_file = "/home/chris/Downloads/spark.pkl"
+#hog_file = "/home/chris/Downloads/hog_file.pkl"
+#sc_file = "/home/chris/Downloads/sc_file.pkl"
+#spark_file = "/home/chris/Downloads/spark.pkl"
 
-# data_folder = "/home/santhoshini/sbir/benchmark/images/"
-# test_folder = "/home/santhoshini/sbir/benchmark/sketches/"
-# edge_folder = "/home/santhoshini/sbir/benchmark/edges/"
-#
-# hog_file = "/home/santhoshini/sbir/hog_file.pkl"
-# sc_file = "/home/santhoshini/sbir/sc_file.pkl"
-# spark_file = "/home/santhoshini/sbir/spark.pkl"
+data_folder = "/home/santhoshini/sbir/benchmark/images/"
+test_folder = "/home/santhoshini/sbir/benchmark/sketches/"
+edge_folder = "/home/santhoshini/sbir/benchmark/edges/"
+
+hog_file = "/home/santhoshini/sbir/hog_file.pkl"
+sc_file = "/home/santhoshini/sbir/sc_file.pkl"
+spark_file = "/home/santhoshini/sbir/spark.pkl"
 
 train_file = "data/train.txt"
 test_file = "data/test.txt"

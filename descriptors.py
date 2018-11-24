@@ -47,7 +47,7 @@ def gen_sc_descriptors(points, window_sizes, nbins_r, nbins_theta, r_inner, r_ou
 def create_and_save_hog_words(data_file, params, filename):
     """Create hog descriptors and save them to a pickle file."""
     print("Reading images.")
-    X, y, filenames = read_data(data_file, test=True)
+    X, y, filenames = read_data(data_file)
 
     hog_words = {}
 
@@ -71,7 +71,7 @@ def create_and_save_hog_words(data_file, params, filename):
 def create_and_save_sc_words(data_file, params, filename):
     """Create hog descriptors and save them to a pickle file."""
     print("Reading images.")
-    X, y, filenames = read_data(data_file, test=True)
+    X, y, filenames = read_data(data_file)
 
     sc_words = {}
 
@@ -95,7 +95,7 @@ def create_and_save_sc_words(data_file, params, filename):
 def create_and_save_spark_words(data_file, params, filename):
     """Create Spark descriptors and save them to pickle file."""
     print("Reading images.")
-    X, y, filenames = read_data(data_file, test=True)
+    X, y, filenames = read_data(data_file)
 
     spark_words = {}
 
