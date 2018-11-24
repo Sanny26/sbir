@@ -35,7 +35,7 @@ codebook_size = 750
 
 hog_model = "hog_model" + str(codebook_size) + ".pkl"
 sc_model = "sc_model" + str(codebook_size) + ".pkl"
-spark_model = "spark_model" + str(codebook_size) + ".pkl"   
+spark_model = "spark_model" + str(codebook_size) + ".pkl"
 
 edge_params = {
                 "sigma": 5,

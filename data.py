@@ -5,6 +5,11 @@ from settings import train_file, test_file
 from skimage.io import imread
 
 
+def get_file_name(filename):
+    """Get the filename from total path."""
+    return filename.split("/")[-1]
+
+
 def make_train_val_file(folder, train_file):
     """Make train and validation file."""
     folders = os.listdir(folder)
@@ -41,7 +46,7 @@ def read_data(filename, test=False):
 
     for l in f:
         data = l.strip().split(',')
-        filenames.append(data[0])
+        filenames.append(get_file_name(data[0]))
 
         img = imread(data[0], as_gray=True)
         if test:
