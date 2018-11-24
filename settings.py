@@ -11,7 +11,7 @@
 # Ada files.
 data_folder = "/home/chrizandr/sbir_data/benchmark/images/"
 test_folder = "/home/chrizandr/sbir_data/benchmark/sketches/"
-edge_folder = "/home/chrizandr/sbir_data/benchmark/edges/"
+edge_folder = "/home/chrizandr/sbir_data/benchmark/edge/"
 
 hog_file = "/home/chrizandr/sbir_data/hog_file.pkl"
 sc_file = "/home/chrizandr/sbir_data/sc_file.pkl"

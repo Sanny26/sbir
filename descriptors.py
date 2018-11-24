@@ -62,9 +62,11 @@ def create_and_save_hog_words(data_file, params, filename):
             samples = indices
 
         points = np.array([[edge_pixels[0][i], edge_pixels[1][i]] for i in samples])
+        if len(points) == 0:
+            continue
         descriptors = gen_hog_descriptors(img, points, **params)
         hog_words[filenames[i]] = descriptors
-    pdb.set_trace()
+    # pdb.set_trace()
     pickle.dump(hog_words, open(filename, "wb"))
 
 
@@ -86,6 +88,8 @@ def create_and_save_sc_words(data_file, params, filename):
             samples = indices
 
         points = np.array([[edge_pixels[0][i], edge_pixels[1][i]] for i in samples])
+        if len(points) == 0:
+            continue
         descriptors = gen_sc_descriptors(points, **params)
         sc_words[filenames[i]] = descriptors
     # pdb.set_trace()
@@ -100,7 +104,7 @@ def create_and_save_spark_words(data_file, params, filename):
     spark_words = {}
 
     for i, img in enumerate(X):
-        print("Processing image ", filenames[i])
+        print("Processing image ", i)
         points = (255-img).nonzero()
         rand_ind = np.random.randint(0, len(points[0]), size=(sample_points))
         rpoints = [points[0][rand_ind], points[1][rand_ind]]
@@ -112,7 +116,7 @@ def create_and_save_spark_words(data_file, params, filename):
 
 
 if __name__ == "__main__":
-    create_and_save_hog_words(train_file, hog_params, hog_file)
+    # create_and_save_hog_words(train_file, hog_params, hog_file)
     # create_and_save_sc_words(train_file, sc_params, sc_file)
-    # create_and_save_spark_words(train_file, spark_params, spark_file)
+    create_and_save_spark_words(train_file, spark_params, spark_file)
     pdb.set_trace()
