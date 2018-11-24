@@ -51,8 +51,8 @@ def gen_spark_descriptors(img, points, nbins_r, nbins_theta, window_size):
             theta_array = cdist(np.array([patch_centre]), sketch_points, lambda u, v: math.atan2((v[1] - u[1]), (v[0] - u[0])))
             direction_bins = np.arange(theta_array.min(), theta_array.max(), 0.05)
             direction_array = []
-            
-            if theta_array.min()==theta_array.max():
+
+            if theta_array.min() == theta_array.max():
                 direction_array = theta_array
             else:
                 for each in theta_array[0]:
@@ -70,7 +70,7 @@ def gen_spark_descriptors(img, points, nbins_r, nbins_theta, window_size):
                 darray = cdist(np.array([patch_centre]), dpoints)
                 # t_points.append(sketch_points[pos[darray.argmin()]])
                 bin_r = (bins_r <= darray[0, darray.argmin()]).nonzero()[0][-1]
-                bin_theta = (bins_theta <= direction).nonzero()[0][-1] 
+                bin_theta = (bins_theta <= direction).nonzero()[0][-1]
                 pt_hist[bin_r, bin_theta] += 1
             # t_points = np.array(points)
             # plot_feature_points(patch, points, patch_centre)
@@ -78,13 +78,13 @@ def gen_spark_descriptors(img, points, nbins_r, nbins_theta, window_size):
 
         else:
             direction = cdist(np.array([patch_centre]), sketch_points,
-                                    lambda u, v: math.atan2((v[1] - u[1]), (v[0] - u[0])))[0][0]
+                              lambda u, v: math.atan2((v[1] - u[1]), (v[0] - u[0])))[0][0]
             distance = cdist(np.array([patch_centre]), sketch_points)[0][0]
             bin_r = (bins_r <= distance).nonzero()[0][-1]
             bin_theta = (bins_theta <= direction).nonzero()[0][-1]
             pt_hist[bin_r, bin_theta] += 1
             descriptor.append(pt_hist.flatten())
-     
+
     return np.array(descriptor)
 
 
