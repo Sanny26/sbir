@@ -47,7 +47,7 @@ def gen_sc_descriptors(points, window_sizes, nbins_r, nbins_theta, r_inner, r_ou
 def create_and_save_hog_words(data_file, params, filename):
     """Create hog descriptors and save them to a pickle file."""
     print("Reading images.")
-    X, y, filenames = read_data(data_file)
+    X, y, filenames = read_data(data_file, test=False)
 
     hog_words = {}
 
@@ -71,7 +71,7 @@ def create_and_save_hog_words(data_file, params, filename):
 def create_and_save_sc_words(data_file, params, filename):
     """Create hog descriptors and save them to a pickle file."""
     print("Reading images.")
-    X, y, filenames = read_data(data_file)
+    X, y, filenames = read_data(data_file, test=False)
 
     sc_words = {}
 
@@ -95,7 +95,7 @@ def create_and_save_sc_words(data_file, params, filename):
 def create_and_save_spark_words(data_file, params, filename):
     """Create Spark descriptors and save them to pickle file."""
     print("Reading images.")
-    X, y, filenames = read_data(data_file)
+    X, y, filenames = read_data(data_file, test=False)
 
     spark_words = {}
 
@@ -112,7 +112,7 @@ def create_and_save_spark_words(data_file, params, filename):
 
 
 if __name__ == "__main__":
-    # create_and_save_hog_words(train_file, hog_params, hog_file)
+    create_and_save_hog_words(train_file, hog_params, hog_file)
     # create_and_save_sc_words(train_file, sc_params, sc_file)
-    create_and_save_spark_words(train_file, spark_params, spark_file)
+    # create_and_save_spark_words(train_file, spark_params, spark_file)
     pdb.set_trace()
