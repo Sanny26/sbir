@@ -3,6 +3,7 @@
 
 import os
 import pickle
+import pdb
 
 import numpy as np
 from sklearn.cluster import KMeans
@@ -17,13 +18,23 @@ from settings import (spark_params, hog_params, sc_params)
 
 def train_bof_model(filename, model_file, num_words=100):
     """Train a bag of features model given a feature."""
+    print("Reading data")
     data = pickle.load(open(filename, "rb"))
     keys = list(data.keys())
-    raw_data = data[keys[0]]
-    for k in keys[1::]:
-        raw_data = np.vstack((raw_data, data[k]))
+    errors = []
+    raw_data = [data[k] for k in keys]
+    for i, r in enumerate(raw_data):
+        if type(r) is list:
+            errors.append(keys[i])
+        elif r.shape[1] != 60:
+            errors.append(keys[i])
+    pdb.set_trace() 
+    print("Building vectors")
+    raw_data = np.vstack(raw_data)
+    print(raw_data.shape)
 
-    model = KMeans(n_clusters=num_words, n_jobs=-1, max_iter=500)
+    print("Training model")
+    model = KMeans(n_clusters=num_words, max_iter=500, verbose=1, n_init=5)
     model.fit(raw_data)
 
     pickle.dump(model, open(model_file, "wb"))
@@ -110,11 +121,11 @@ def get_words(img, models, num_words):
 
 
 if __name__ == "__main__":
-    train_bof_model(hog_file, hog_model, codebook_size)
-    train_bof_model(sc_file, sc_model, codebook_size)
+    # train_bof_model(hog_file, hog_model, codebook_size)
+    # train_bof_model(sc_file, sc_model, codebook_size)
     train_bof_model(spark_file, spark_model, codebook_size)
 
-    create_docs(docs_folder,
-                [hog_model, sc_model, spark_model],
-                [hog_file, sc_file, spark_file],
-                [codebook_size, codebook_size, codebook_size])
+    # create_docs(docs_folder,
+    #             [hog_model, sc_model, spark_model],
+    #             [hog_file, sc_file, spark_file],
+    #             [codebook_size, codebook_size, codebook_size])

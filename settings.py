@@ -13,6 +13,7 @@ data_folder = "/home/chrizandr/sbir_data/benchmark/images/"
 test_folder = "/home/chrizandr/sbir_data/benchmark/sketches/"
 edge_folder = "/home/chrizandr/sbir_data/benchmark/edge/"
 
+docs_folder = "/home/chrizandr/sbir_data/docs/"
 hog_file = "/home/chrizandr/sbir_data/hog_file.pkl"
 sc_file = "/home/chrizandr/sbir_data/sc_file.pkl"
 spark_file = "/home/chrizandr/sbir_data/spark.pkl"
