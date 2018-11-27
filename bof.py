@@ -49,7 +49,10 @@ def create_docs(foldername, model_files, feature_files, num_words):
         index_add = sum(num_words[0:word_index])
         word_index += 1
         print("Predicting...")
-        for k in data:
+        keys = list(data.keys())
+        for i, k in enumerate(keys):
+            print("Processing image", i)
+            pdb.set_trace()
             words = model.predict(data[k])
             words = words + index_add
             if k not in final_words:
@@ -60,7 +63,7 @@ def create_docs(foldername, model_files, feature_files, num_words):
     print("Making docs...")
     for k in final_words:
         i_name = k.split('/')[-2] + "_" + k.split('/')[-1].split(".")[0] + ".txt"
-        f = open(os.path.join(foldername, i_name))
+        f = open(os.path.join(foldername, i_name), "w")
         out = "\n".join([str(x) for x in final_words[k]])
         f.write(out)
         f.close()
@@ -129,8 +132,8 @@ if __name__ == "__main__":
     # train_bof_model(sc_file, sc_model, codebook_size)
     # train_bof_model(spark_file, spark_model, codebook_size)
 
-    models = get_models([hog_model, sc_model, spark_model])
+    # models = get_models([hog_model, sc_model, spark_model])
     create_docs(docs_folder,
-                models,
+                [hog_model, sc_model, spark_model]
                 [hog_file, sc_file, spark_file],
                 [codebook_size, codebook_size, codebook_size])
