@@ -23,12 +23,7 @@ def train_bof_model(filename, model_file, num_words=100):
     keys = list(data.keys())
     errors = []
     raw_data = [data[k] for k in keys]
-    for i, r in enumerate(raw_data):
-        if type(r) is list:
-            errors.append(keys[i])
-        elif r.shape[1] != 60:
-            errors.append(keys[i])
-    pdb.set_trace() 
+    
     print("Building vectors")
     raw_data = np.vstack(raw_data)
     print(raw_data.shape)

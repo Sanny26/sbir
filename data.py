@@ -7,7 +7,7 @@ from skimage.io import imread
 
 def get_file_name(filename):
     """Get the filename from total path."""
-    return filename.split("/")[-1]
+    return "/".join(filename.split("/")[-2::])
 
 
 def make_train_val_file(folder, train_file):
