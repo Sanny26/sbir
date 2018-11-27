@@ -24,12 +24,7 @@ def train_bof_model(filename, model_file, num_words=100):
     keys = list(data.keys())
     errors = []
     raw_data = [data[k] for k in keys]
-    for i, r in enumerate(raw_data):
-        if type(r) is list:
-            errors.append(keys[i])
-        elif r.shape[1] != 60:
-            errors.append(keys[i])
-    pdb.set_trace()
+
     print("Building vectors")
     raw_data = np.vstack(raw_data)
     print(raw_data.shape)
@@ -47,11 +42,13 @@ def create_docs(foldername, model_files, feature_files, num_words):
     final_words = {}
 
     for model_file, filename in zip(model_files, feature_files):
+        print("Reading ", filename)
         data = pickle.load(open(filename, "rb"))
+        print("Reading ", model_file)
         model = pickle.load(open(model_file, "rb"))
         index_add = sum(num_words[0:word_index])
         word_index += 1
-
+        print("Predicting...")
         for k in data:
             words = model.predict(data[k])
             words = words + index_add
@@ -60,6 +57,7 @@ def create_docs(foldername, model_files, feature_files, num_words):
             else:
                 final_words[k].extend(list(words))
 
+    print("Making docs...")
     for k in final_words:
         i_name = k.split('/')[-2] + "_" + k.split('/')[-1].split(".")[0] + ".txt"
         f = open(os.path.join(foldername, i_name))
