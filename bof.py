@@ -7,6 +7,7 @@ import pdb
 
 import numpy as np
 from sklearn.cluster import KMeans
+from edge import convert_to_sketch
 
 from descriptors import (gen_spark_descriptors, gen_hog_descriptors, gen_sc_descriptors)
 from settings import (hog_file, sc_file, spark_file)
@@ -28,7 +29,7 @@ def train_bof_model(filename, model_file, num_words=100):
             errors.append(keys[i])
         elif r.shape[1] != 60:
             errors.append(keys[i])
-    pdb.set_trace() 
+    pdb.set_trace()
     print("Building vectors")
     raw_data = np.vstack(raw_data)
     print(raw_data.shape)
@@ -60,7 +61,7 @@ def create_docs(foldername, model_files, feature_files, num_words):
                 final_words[k].extend(list(words))
 
     for k in final_words:
-        i_name = k.split('/')[-1].split(".")[0] + ".txt"
+        i_name = k.split('/')[-2] + "_" + k.split('/')[-1].split(".")[0] + ".txt"
         f = open(os.path.join(foldername, i_name))
         out = "\n".join([str(x) for x in final_words[k]])
         f.write(out)
@@ -72,9 +73,14 @@ def get_models(model_files):
 
 
 # NOTE: models and num_words should be in order HoG, SC, Spark
-def get_words(img, models, num_words):
+def get_words(img, models, num_words, sketch_image=False):
     """Given an image find all the words in the image using pre-trained models."""
     # Hog descriptors
+    if sketch_image:
+        img = (1 - img) * 255
+    else:
+        img = convert_to_sketch(img)
+
     edge_pixels = img.nonzero()
     indices = np.arange(len(edge_pixels[0]))
 
@@ -123,9 +129,10 @@ def get_words(img, models, num_words):
 if __name__ == "__main__":
     # train_bof_model(hog_file, hog_model, codebook_size)
     # train_bof_model(sc_file, sc_model, codebook_size)
-    train_bof_model(spark_file, spark_model, codebook_size)
+    # train_bof_model(spark_file, spark_model, codebook_size)
 
-    # create_docs(docs_folder,
-    #             [hog_model, sc_model, spark_model],
-    #             [hog_file, sc_file, spark_file],
-    #             [codebook_size, codebook_size, codebook_size])
+    models = get_models([hog_model, sc_model, spark_model])
+    create_docs(docs_folder,
+                models,
+                [hog_file, sc_file, spark_file],
+                [codebook_size, codebook_size, codebook_size])
