@@ -1,7 +1,9 @@
 """Train classifier and test it using features from images."""
 
 import numpy as np
+import pdb
 
+import pickle
 from data import read_docs_create_distributions
 from data import read_data, get_distribution
 
@@ -10,7 +12,9 @@ from settings import test_file, docs_folder
 from settings import codebook_size
 from settings import hog_model, sc_model, spark_model
 
-from sklearn.linear_model import LogisticRegression
+# from sklearn.linear_model import LogisticRegression
+# from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier as RF
 from sklearn.metrics import accuracy_score, f1_score
 
 
@@ -39,16 +43,21 @@ if __name__ == "__main__":
 
     # Read test data
     print("Read testing data")
-    X_test, y_test = read_data(test_file)
-    X_test = get_word_distribution(X_test, model_files, num_words, sketch_images=True)
+    # X_test, y_test, _ = read_data(test_file)
+    # X_test = get_word_distribution(X_test, model_files, num_words, sketch_images=True)
+    # pickle.dump((X_test, y_test), open("test.pkl", "wb"))
+    X_test, y_test = pickle.load(open("test.pkl", "rb"))
 
     # Train model
     print("Training model")
-    model = LogisticRegression()
+    gamma = 3e-3
+    
+    model = RF(random_state=48)
     model.fit(X_train, y_train)
 
+    # Testing
+    print("Testing model")
+    
     pred = model.predict(X_test)
     acc = accuracy_score(y_test, pred)
-    f1 = f1_score(y_test, pred, average='samples')
-
-    print("Accuracy: {} \n F1 Score: {}".format(acc, f1))
+    print("Accuracy: {} \n F1 Score: {}".format(acc, acc))

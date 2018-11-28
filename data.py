@@ -66,9 +66,10 @@ def read_docs_create_distributions(docs_folder, total_codebook_size):
     Y = []
     for f in files:
         vec = [0] * total_codebook_size
+        f_path = os.path.join(docs_folder, f)
         label = int(f.split("_")[0])
 
-        data = open(f, "r")
+        data = open(f_path, "r")
         for word in data:
             w = int(word.strip())
             vec[w] += 1

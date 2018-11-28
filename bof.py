@@ -52,7 +52,6 @@ def create_docs(foldername, model_files, feature_files, num_words):
         keys = list(data.keys())
         for i, k in enumerate(keys):
             print("Processing image", i)
-            pdb.set_trace()
             words = model.predict(data[k])
             words = words + index_add
             if k not in final_words:
@@ -134,6 +133,6 @@ if __name__ == "__main__":
 
     # models = get_models([hog_model, sc_model, spark_model])
     create_docs(docs_folder,
-                [hog_model, sc_model, spark_model]
+                [hog_model, sc_model, spark_model],
                 [hog_file, sc_file, spark_file],
                 [codebook_size, codebook_size, codebook_size])
