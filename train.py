@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     # Read train data
     print("Read training data")
-    X_train, y_train = read_docs_create_distributions(docs_folder, sum(num_words))
+    X_train, y_train = read_docs_create_distributions("/home/chris/Downloads/benchmark/docs/", sum(num_words))
 
     # Read test data
     print("Read testing data")
@@ -51,13 +51,13 @@ if __name__ == "__main__":
     # Train model
     print("Training model")
     gamma = 3e-3
-    
+
     model = RF(random_state=48)
     model.fit(X_train, y_train)
 
     # Testing
     print("Testing model")
-    
+
     pred = model.predict(X_test)
     acc = accuracy_score(y_test, pred)
     print("Accuracy: {} \n F1 Score: {}".format(acc, acc))
