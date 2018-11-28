@@ -59,6 +59,34 @@ def read_data(filename, test=False):
     return np.array(X), np.array(Y), filenames
 
 
+def read_docs_create_distributions(docs_folder, total_codebook_size):
+    """Find the distribution and label of images from word docs."""
+    files = os.listdir(docs_folder)
+    X = []
+    Y = []
+    for f in files:
+        vec = [0] * total_codebook_size
+        label = int(f.split("_")[0])
+
+        data = open(f, "r")
+        for word in data:
+            w = int(word.strip())
+            vec[w] += 1
+
+        X.append(vec)
+        Y.append(label)
+
+    return np.array(X), np.array(Y)
+
+
+def get_distribution(words, total_codebook_size):
+    """Create distribution from words."""
+    vec = [0] * total_codebook_size
+    for w in words:
+        vec[w] += 1
+    return np.array(vec)
+
+
 if __name__ == "__main__":
     make_train_val_file(edge_folder, train_file)
     make_test_file(test_folder, test_file)
