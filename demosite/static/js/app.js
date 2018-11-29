@@ -117,14 +117,12 @@ changeColorButton.addEventListener("click", function (event) {
   signaturePad.penColor = color;
 });
 
-
 queryImageButton.addEventListener("click", function (event) {
   if (signaturePad.isEmpty()) {
-    alert("Please provide a signature first.");
+    alert("Please provide a sketch first.");
   } else {
     var dataURL = signaturePad.toDataURL();
     var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
-    console.log('@@@@@@@@@@@@@@@@@@@')
     $.ajax({
            type:"POST",
            url:"http://localhost:8000/image/",
@@ -132,37 +130,15 @@ queryImageButton.addEventListener("click", function (event) {
                   'dataURL': dataURL,
                   'csrfmiddlewaretoken': csrftoken
                   },
-           dataType: 'json',
            success: function(){
-               $('#message').html("<h2>Contact Form Submitted!</h2>") 
-           }
+            window.location.href='http://localhost:8000/results';
+            },
+            error: function(xhr, textStatus, error){
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+      }
       });  
   }
 });
 
-savePNGButton.addEventListener("click", function (event) {
-  if (signaturePad.isEmpty()) {
-    alert("Please provide a signature first.");
-  } else {
-    var dataURL = signaturePad.toDataURL();
-    download(dataURL, "signature.png");
-  }
-});
-
-saveJPGButton.addEventListener("click", function (event) {
-  if (signaturePad.isEmpty()) {
-    alert("Please provide a signature first.");
-  } else {
-    var dataURL = signaturePad.toDataURL("image/jpeg");
-    download(dataURL, "signature.jpg");
-  }
-});
-
-saveSVGButton.addEventListener("click", function (event) {
-  if (signaturePad.isEmpty()) {
-    alert("Please provide a signature first.");
-  } else {
-    var dataURL = signaturePad.toDataURL('image/svg+xml');
-    download(dataURL, "signature.svg");
-  }
-});

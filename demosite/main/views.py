@@ -59,7 +59,6 @@ def read_image(request):
 	context = {}
 	if request.is_ajax():
 		dataURL = request.POST.get('dataURL')
-		#print(dataURL)
 		up = urllib.parse.urlparse(dataURL)
 		head, data = up.path.split(',', 1)
 		bits = head.split(';')
@@ -72,6 +71,7 @@ def read_image(request):
 		        b64 = True
 		imgData = base64.b64decode(	data)
 		im = np.asarray(Image.open(BytesIO(imgData)))
-		cv2.imwrite( 'test.jpg', im)
-		
-	return render(request, template_name, context)
+		#cv2.imwrite( 'test.jpg', im)
+		request.session['image'] = im.tolist()
+		return redirect('results')
+	return redirect('index')
