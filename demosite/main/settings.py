@@ -9,16 +9,16 @@ sc_file = "/home/chris/Downloads/sc_file.pkl"
 spark_file = "/home/chris/Downloads/spark.pkl"
 
 
-train_file = "/home/chris/sbir/data/train.txt"
-test_file = "/home/chris/sbir/data/test.txt"
+train_file = "data/train.txt"
+test_file = "data/test.txt"
 
 sample_points = 500
 
 codebook_size = 750
 
-hog_model = "/home/chris/sbir/hog_model" + str(codebook_size) + ".pkl"
-sc_model = "/home/chris/sbir/sc_model" + str(codebook_size) + ".pkl"
-spark_model = "/home/chris/sbir/spark_model" + str(codebook_size) + ".pkl"
+hog_model = "hog_model" + str(codebook_size) + ".pkl"
+sc_model = "sc_model" + str(codebook_size) + ".pkl"
+spark_model = "spark_model" + str(codebook_size) + ".pkl"
 
 edge_params = {
                 "sigma": 5,
@@ -46,4 +46,4 @@ spark_params = {
                     "window_size": 200
                }
 
-tfidf_model = "/home/chris/sbir/tfidf.pkl"
+tfidf_model = "tfidf.pkl"

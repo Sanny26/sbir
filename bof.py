@@ -22,7 +22,6 @@ def train_bof_model(filename, model_file, num_words=100):
     print("Reading data")
     data = pickle.load(open(filename, "rb"))
     keys = list(data.keys())
-    errors = []
     raw_data = [data[k] for k in keys]
 
     print("Building vectors")
@@ -127,9 +126,9 @@ def get_words(img, models, num_words, sketch_image=False):
 
 
 if __name__ == "__main__":
-    # train_bof_model(hog_file, hog_model, codebook_size)
-    # train_bof_model(sc_file, sc_model, codebook_size)
-    # train_bof_model(spark_file, spark_model, codebook_size)
+    train_bof_model(hog_file, hog_model, codebook_size)
+    train_bof_model(sc_file, sc_model, codebook_size)
+    train_bof_model(spark_file, spark_model, codebook_size)
 
     # models = get_models([hog_model, sc_model, spark_model])
     create_docs(docs_folder,
