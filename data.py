@@ -5,8 +5,10 @@ from settings import train_file, test_file
 from skimage.io import imread
 
 
-def get_file_name(filename):
+def get_file_name(filename, doc=False):
     """Get the filename from total path."""
+    if doc:
+        return filename.split('/')[-2] + "_" + filename.split('/')[-1].split(".")[0] + ".txt"
     return "/".join(filename.split("/")[-2::])
 
 
@@ -35,6 +37,16 @@ def make_test_file(folder, output_file):
         t_file.write("{},{}\n".format(os.path.join(folder, f), int(label)))
 
     t_file.close()
+
+
+def read_filenames(text_file):
+    """Read the filenames from a txt file."""
+    f = open(text_file, "r")
+    names = []
+    for l in f:
+        data = l.strip()
+        names.append(data)
+    return names
 
 
 def read_data(filename, test=False):

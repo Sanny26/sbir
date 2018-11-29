@@ -1,5 +1,7 @@
 sc_descriptor.py
 benchmark/*
+demosite/static/images/
+demosite/static/images/*
 spark.pkl
 *.pkl
 # Byte-compiled / optimized / DLL files

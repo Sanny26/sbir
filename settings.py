@@ -1,42 +1,24 @@
 # Chris files.
-# data_folder = "/home/chris/Downloads/benchmark/images/"
-# test_folder = "/home/chris/Downloads/benchmark/sketches/"
-# edge_folder = "/home/chris/Downloads/benchmark/edges/"
-#
-# hog_file = "/home/chris/Downloads/hog_file.pkl"
-# sc_file = "/home/chris/Downloads/sc_file.pkl"
-# spark_file = "/home/chris/Downloads/spark.pkl"
+data_folder = "/home/chris/Downloads/benchmark/images/"
+test_folder = "/home/chris/Downloads/benchmark/sketches/"
+edge_folder = "/home/chris/Downloads/benchmark/edges/"
+docs_folder = "/home/chris/Downloads/benchmark/docs/"
+
+hog_file = "/home/chris/Downloads/hog_file.pkl"
+sc_file = "/home/chris/Downloads/sc_file.pkl"
+spark_file = "/home/chris/Downloads/spark.pkl"
 
 
-# Ada files.
-data_folder = "/home/chrizandr/sbir_data/benchmark/images/"
-test_folder = "/home/chrizandr/sbir_data/benchmark/sketches/"
-edge_folder = "/home/chrizandr/sbir_data/benchmark/edge/"
-
-docs_folder = "/home/chrizandr/sbir_data/docs/"
-hog_file = "/home/chrizandr/sbir_data/hog_file.pkl"
-sc_file = "/home/chrizandr/sbir_data/sc_file.pkl"
-spark_file = "/home/chrizandr/sbir_data/spark.pkl"
-
-# Santhu files.
-# data_folder = "/home/santhoshini/sbir/benchmark/images/"
-# test_folder = "/home/santhoshini/sbir/benchmark/sketches/"
-# edge_folder = "/home/santhoshini/sbir/benchmark/edges/"
-#
-# hog_file = "/home/santhoshini/sbir/hog_file.pkl"
-# sc_file = "/home/santhoshini/sbir/sc_file.pkl"
-# spark_file = "/home/santhoshini/sbir/spark.pkl"
-
-train_file = "data/train.txt"
-test_file = "data/test.txt"
+train_file = "/home/chris/sbir/data/train.txt"
+test_file = "/home/chris/sbir/data/test.txt"
 
 sample_points = 500
 
 codebook_size = 750
 
-hog_model = "hog_model" + str(codebook_size) + ".pkl"
-sc_model = "sc_model" + str(codebook_size) + ".pkl"
-spark_model = "spark_model" + str(codebook_size) + ".pkl"
+hog_model = "/home/chris/sbir/hog_model" + str(codebook_size) + ".pkl"
+sc_model = "/home/chris/sbir/sc_model" + str(codebook_size) + ".pkl"
+spark_model = "/home/chris/sbir/spark_model" + str(codebook_size) + ".pkl"
 
 edge_params = {
                 "sigma": 5,
@@ -63,3 +45,5 @@ spark_params = {
                     "nbins_theta": 12,
                     "window_size": 200
                }
+
+tfidf_model = "/home/chris/sbir/tfidf.pkl"
