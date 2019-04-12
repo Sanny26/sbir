@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html lang="en">
+<head>
+{% include "meta.html" %}
+{% include "template_css.html"%}
+{% block css %}{% endblock %}
+{% block init_scripts %}{% endblock %}
+</head>
+{% block style %}{% endblock %}
+{% block content %}{% endblock %}
+</html>

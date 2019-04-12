@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block css%}
+  <!--meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"-->
+  <link rel="stylesheet" href="{% static 'css/signature-pad.css' %}">
+
+{% endblock%}
+
+{% block init_scripts%}
+  <script src="{% static 'jquery/jquery.min.js' %}"></script-->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39365077-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+{% endblock %}
+
+{% block content%}
+<body onselectstart="return false">
+    <div class='col-sm-4'>
+      <h3 class="mt-5">Demo for SBIR&nbsp&nbsp&nbsp&nbsp</h3>
+      <p>Please provide your sketch in the box given.</p>
+    </div>
+      <div id="signature-pad" class="signature-pad">
+        <div class="signature-pad--body">
+          <canvas></canvas>
+        </div>
+        <div class="signature-pad--footer">
+          <div class="description">Draw your sketch above</div>
+
+          <div class="signature-pad--actions">
+            <div>
+              <button type="button" class="btn btn-primary clear" data-action="clear">Clear</button>
+              <button type="button" class="btn btn-primary" data-action="change-color">Change color</button>
+              <button type="button" class="btn btn-primary" data-action="undo">Undo</button>
+            </div>
+            <div>
+              <!--button type="button" class="button save" data-action="save-png">Save as PNG</button-->
+              <button type="button" class="btn btn-danger save" data-action="query-img">Search</button>
+              <!--button type="button" class="button save" data-action="save-jpg">Save as JPG</button-->
+              <!--button type="button" class="button save" data-action="save-svg">Save as SVG</button-->
+            </div>
+          </div>
+        </div>
+      </div>
+  <script src="{% static 'js/signature_pad.umd.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+{% endblock %}
+

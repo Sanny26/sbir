@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <br><br>
+          <h5>FAQ</h5>
+          <br>
+          <ul class="list-styled">
+          {% for obj in data %}
+            <p class="lead">{{obj.question}} </p>
+            <p> {{obj.answer}}</p>
+            <hr>
+          {% endfor %}
+          </ul>
+          <br><br>
+          <p class="font-weight-bold">For further queries, please contact us at santhoshini.gongidi@research.iiit.ac.in</p>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block srcipts %}
+    {% include "template_scripts.html" %}
+{% endblock %}
